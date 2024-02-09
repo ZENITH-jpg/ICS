@@ -25,18 +25,19 @@ public class Concentration{
       s = new Scanner(System.in);
    }
    void game(){
+      display();
       while(matches < 8 || misses < 10){
          int x1, y1, x2, y2;
-         System.out.println("Enter x coordinate for first card (1-4)");
+         System.out.println("Enter the column for first card (1-4)");
          x1 = input();
-         System.out.println("Enter y coordinate for first card (1-4)");
+         System.out.println("Enter the row for first card (1-4)");
          y1 = input();
          while(true){
-            System.out.println("Enter x coordinate for second card (1-4)");
+            System.out.println("Enter the column for second card (1-4)");
             x2 = input();
-            System.out.println("Enter y coordinate for second card (1-4)");
+            System.out.println("Enter the row for second card (1-4)");
             y2 = input();
-            if(x1 == x1 && y1 ==y2)
+            if(x1 == x2 && y1 ==y2)
                System.out.println("Cannot choose the same card for card 1 and 2");
             else break;
          }
