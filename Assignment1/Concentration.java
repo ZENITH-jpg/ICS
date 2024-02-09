@@ -29,6 +29,7 @@ public class Concentration {
       display();
       while (matches < 8 && misses < 10) {
          int x1, y1, x2, y2;
+         
          do {
             System.out.println("Enter the column for first card (1-4).");
             x1 = input();
@@ -39,6 +40,7 @@ public class Concentration {
                x1 = -1;
             }
          } while (x1 == -1);
+         
          do {
             System.out.println("Enter the column for second card (1-4).");
             x2 = input();
@@ -53,18 +55,22 @@ public class Concentration {
                x2 = -1;
             }
          } while (x2 == -1);
+         
          if (bank[y1][x1] == bank[y2][x2]) 
             matches++;
          else 
             misses++;
+            
          found[y1][x1] = true;
          found[y2][x2] = true;
          display();
+         
          if (bank[y1][x1] != bank[y2][x2]) {
             found[y1][x1] = false;
             found[y2][x2] = false;
          }
       }
+      
       if (matches == 8) {
          System.out.println("You win!");
       } else {
