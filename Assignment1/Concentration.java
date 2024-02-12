@@ -88,28 +88,28 @@ public class Concentration {
    }
    
    int input() { // method for getting input for index selections
-      int in;
-      do {
-         in = s.nextInt()-1;
-         if(0>in || in>=4) {
-            System.out.println("Invalid input, must be a integer from 1-4.");
+      int in; // varible that stores player's number
+      do { // loop in case invalid input
+         in = s.nextInt()-1; // minus one from input for indexing purposes
+         if(0>in || in>=4) { // make sure input is in range
+            System.out.println("Invalid input, must be a integer from 1-4.");// if not, loop
             in = -1;
          }
       } while(in == -1);
-      return in;
+      return in; // return input
    }
    
-   void display() {
-      for (int i = 0; i < 4; i ++) {
+   void display() { // method that prints the grid and information about matches
+      for (int i = 0; i < 4; i ++) { // itterating through array
          for (int j = 0; j < 4; j ++) {
-            if (found[i][j]) 
+            if (found[i][j])  // if the card is found or matches, flip over to reveal letter
                System.out.print(bank[i][j]);
             else 
-               System.out.print("X");
+               System.out.print("X");  // otherwise display X
          }
-         System.out.println();
+         System.out.println(); // move to next row
       }
-      System.out.println((10-misses) + " tries left, " + matches + " matches made.");
+      System.out.println((10-misses) + " tries left, " + matches + " matches made.");  // print game info
    }
    
 }
