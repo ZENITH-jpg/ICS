@@ -1,6 +1,6 @@
 /*
  *Name: Tristan Cao
- *Date:
+ *Date: 02-12-2024
  *Teacher: Mr. Guglielmi
  *Description: This is portion of code that sets the game and its rules.
                Concentration is a game where you turn over 2 cards at a time denoted by X.
