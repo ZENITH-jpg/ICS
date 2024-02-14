@@ -18,8 +18,8 @@ public class Monster{
    int makeAttack(){
       return atk + r.nextInt(20)+1;
    }
-   int defend(){
-      return def + 2;
+   void defend(){
+      def += 2;
    }
    int getDefence(){
       return def;
