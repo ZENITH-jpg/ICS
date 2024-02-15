@@ -9,7 +9,7 @@ import java.util.Random;
 public class Player extends Monster{
    public Player(){
       super.atk = 6;
-      super.def = 10;
+      super.def = 16;
       super.hp = 15;
       super.dmg = 4;
       super.r = new Random();

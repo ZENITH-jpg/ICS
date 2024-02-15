@@ -6,6 +6,7 @@
 */
 import java.util.Scanner;
 import java.util.Random;
+import java.io.File;
 public class Monster{
    Random r;
    int atk;
@@ -13,7 +14,7 @@ public class Monster{
    int hp;
    int dmg;
    int chooseAttack(){
-      return r.nextInt(2);
+      return r.nextInt(2)+1;
    }
    int makeAttack(){
       return atk + r.nextInt(20)+1;
@@ -21,11 +22,11 @@ public class Monster{
    void defend(){
       def += 2;
    }
+   void undefend(){
+      def -= 2;
+   }
    int getDefence(){
       return def;
-   }
-   int getAttack(){
-      return atk;
    }
    int getHp(){
       return hp;
@@ -38,7 +39,7 @@ public class Monster{
    }
    public Monster(){
       try{
-         Scanner s = new Scanner("Monster.txt");
+         Scanner s = new Scanner(new File("Monster.txt"));
          atk = s.nextInt();
          def = s.nextInt();
          hp = s.nextInt();
@@ -46,7 +47,7 @@ public class Monster{
          r = new Random();
          s.close();
       }catch(Exception e){
-      
+
       }
    }
 }
