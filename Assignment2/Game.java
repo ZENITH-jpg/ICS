@@ -19,8 +19,10 @@ public class Game {
       s = new Scanner(System.in);
       turn = 1;
    }
+   
    void beginGame(){
       while(p.getHp() > 0 && m.getHp() > 0){
+         System.out.printf("Player is at %d health and Monster is at %d health\n", p.getHp(), m.getHp());
          if(turn % 2 == 0) {
             mTurn();
          }
@@ -28,13 +30,13 @@ public class Game {
             pTurn();
          }
          turn++;
-         System.out.printf("Player is at %d health and Monster is at %d health\n", p.getHp(), m.getHp());
       }
       if(p.getHp() > 0)
          System.out.println("Player Wins");
       else 
          System.out.println("Player Loses");
    }
+   
    void mTurn(){
       if(mUsedDefense){
          m.undefend();
@@ -53,6 +55,7 @@ public class Game {
       }
       
    }
+   
    void pTurn(){
       if(pUsedDefense) {
          p.undefend();
@@ -69,6 +72,7 @@ public class Game {
          pUsedDefense = true;
       }
    }
+   
    int input(){
       int in;
       do {
