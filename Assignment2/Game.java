@@ -12,6 +12,7 @@ public class Game {
    boolean pUsedDefense;
    boolean mUsedDefense;
    int turn; //odd for player even for monster
+   int monLeft = 9;
    
    public Game(){
       p = new Player();
@@ -30,6 +31,10 @@ public class Game {
             pTurn();
          }
          turn++;
+         if(m.getHp() <= 0){
+            System.out.println("A monster has been slain");
+            m = new Monster();
+         }
       }
       if(p.getHp() > 0)
          System.out.println("Player Wins");
