@@ -37,17 +37,28 @@ public class Monster{
    void setHp(int hp){
       this.hp = hp;
    }
-   public Monster(){
-      try{
-         Scanner s = new Scanner(new File("Monster.txt"));
-         atk = s.nextInt();
-         def = s.nextInt();
-         hp = s.nextInt();
-         dmg = s.nextInt();
-         r = new Random();
-         s.close();
-      }catch(Exception e){
+   public Monster(int id){
+      this.r = new Random();
+      if(id == 0){
+         this.atk = 6;
+         this.def = 16;
+         this.hp = 15;
+         this.dmg = 4;
+      } else {
+         try{
+            Scanner s = new Scanner(new File("Monster.txt"));
+            atk = s.nextInt();
+            def = s.nextInt();
+            hp = s.nextInt();
+            dmg = s.nextInt();
+            r = new Random();
+            s.close();
+         }catch(Exception e){
 
+         }
       }
+   }
+   public Monster(){
+   
    }
 }

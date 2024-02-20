@@ -6,19 +6,20 @@
 */
 import java.util.Scanner;
 public class Game {
-   Player p;
+   Monster p;
    Monster m;
    Scanner s;
    boolean pUsedDefense;
    boolean mUsedDefense;
    int turn; //odd for player even for monster
-   int monLeft = 9;
+   int monLeft;
    
    public Game(){
-      p = new Player();
-      m = new Monster();
+      p = new Monster(0);
+      m = new Monster(1);
       s = new Scanner(System.in);
       turn = 1;
+      monLeft = 9;
    }
    
    void beginGame(){
