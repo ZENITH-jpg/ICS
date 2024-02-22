@@ -8,33 +8,33 @@ import java.util.Scanner;
 import java.util.Random;
 import java.io.File;
 public class Monster{
-   Random r;
-   int atk;
-   int def;
-   int hp;
-   int dmg;
-   int chooseAttack(){
+   private Random r;
+   private int atk;
+   private int def;
+   private int hp;
+   private int dmg;
+   public int chooseAttack(){
       return r.nextInt(2)+1;
    }
-   int makeAttack(){
+   public int makeAttack(){
       return atk + r.nextInt(20)+1;
    }
-   void defend(){
+   public void defend(){
       def += 2;
    }
-   void undefend(){
+   public void undefend(){
       def -= 2;
    }
-   int getDefence(){
+   public int getDefence(){
       return def;
    }
-   int getHp(){
+   public int getHp(){
       return hp;
    }
-   int getDamage(){
+   public int getDamage(){
       return dmg;
    }
-   void setHp(int hp){
+   public void setHp(int hp){
       this.hp = hp;
    }
    public Monster(int id){
@@ -57,8 +57,5 @@ public class Monster{
 
          }
       }
-   }
-   public Monster(){
-   
    }
 }
