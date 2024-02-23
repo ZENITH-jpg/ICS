@@ -9,8 +9,6 @@ public class Game {
    private Monster p;
    private Monster m;
    private Scanner s;
-   private boolean pUsedDefense;
-   private boolean mUsedDefense;
    private int turn; //odd for player even for monster
    private int monLeft;
    
@@ -23,13 +21,15 @@ public class Game {
    }
    
    public void beginGame(){
+      Monster.createRandom();
       while(p.getHp() > 0 && m.getHp() > 0){
-         System.out.printf("Player is at %d health and Monster is at %d health\n", p.getHp(), m.getHp());
+         System.out.printf("TURN %d: %s is at %d health and %s is at %d health\n", turn, p.getName(), p.getHp(), m.getName(), m.getHp());
          if(turn % 2 == 0) {
-            mTurn();
+            turn(m,p,m.chooseAttack());
          }
          else {
-            pTurn();
+            System.out.println("Enter 1 to attack and 2 to defend!");
+            turn(p,m,input());
          }
          turn++;
          if(m.getHp() <= 0){
@@ -43,46 +43,25 @@ public class Game {
          System.out.println("Player Loses");
    }
    
-   private void mTurn(){
-      if(mUsedDefense){
-         m.undefend();
-         mUsedDefense = false;
+   private void turn(Monster a, Monster b, int attack){
+      if(a.usedDef()){
+         a.undefend();
+         a.flipDef();
       }
-      if(m.chooseAttack() == 1){
-         System.out.println("Monster Attacks!");
-         int atk = m.makeAttack();
-         if(p.getDefence() < atk){
-            p.setHp(p.getHp() - m.getDamage());
-            System.out.println("The attack suceeded! Player takes " + m.getDamage() + " damage.");
+      if(attack == 1){
+         System.out.printf("%s Attacks!\n", a.getName());
+         if(b.getDefence() < a.makeAttack()){
+            b.setHp(b.getHp() - a.getDamage());
+            System.out.printf("The attack suceeded! %s takes %d damage.\n",b.getName(), m.getDamage());
          }else{
             System.out.println("The attack failed!");
          }
       } else {
-         System.out.println("Monster Defends!");
-         m.defend();
-         mUsedDefense = true;
+         System.out.printf("%s Defends!\n", a.getName());
+         a.defend();
+         a.flipDef();
       }
       
-   }
-   
-   private void pTurn(){
-      if(pUsedDefense) {
-         p.undefend();
-         pUsedDefense = false;
-      }
-      System.out.println("Choose an action (1 = attack 2 = defend)");
-      if(input() == 1){
-         int atk = p.makeAttack();
-         if(m.getDefence() < atk){
-            m.setHp(m.getHp() - p.getDamage());
-            System.out.println("The attack suceeded! Monster takes " + p.getDamage() + " damage.");
-         }else{
-            System.out.println("The attack failed!");
-         }
-      } else {
-         p.defend();
-         pUsedDefense = true;
-      }
    }
    
    private int input(){
