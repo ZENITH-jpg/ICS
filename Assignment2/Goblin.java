@@ -1,21 +1,21 @@
 /*
  *Name: Tristan Cao
- *Date: 02-12-2024
+ *Date: 02-24-2024
  *Teacher: Mr. Guglielmi
  *Description: 
 */
 import java.util.Scanner;
-import java.util.Random;
 import java.io.File;
-public class Player{
+import java.util.Random;
+public class Goblin{
    private int atk;
    private int def;
    private int hp;
    private int dmg;
+   private int ablity;
    private String name;
-   
-   public int makeAttack(Random r){
-      return this.atk + r.nextInt(20)+1;
+   public int getAblity(){
+      return this.ablity;
    }
    public int getAttack(){
       return this.atk;
@@ -33,14 +33,15 @@ public class Player{
       return this.name;
    }
 
-   public Player(){
+   public Goblin(){
       try{
-          Scanner s = new Scanner(new File("Player.txt"));
+          Scanner s = new Scanner(new File("Goblin.txt"));
           this.atk = s.nextInt();
           this.def = s.nextInt();
           this.hp = s.nextInt();
           this.dmg = s.nextInt();
           this.name = s.next();
+          this.ablity = s.nextInt();
           s.close();
       }catch(Exception e){
 

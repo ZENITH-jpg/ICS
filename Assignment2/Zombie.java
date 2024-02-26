@@ -12,10 +12,10 @@ public class Zombie{
    private int def;
    private int hp;
    private int dmg;
+   private int ablity;
    private String name;
-   
-   public int makeAttack(Random r){
-      return this.atk + r.nextInt(20)+1;
+   public int getAblity(){
+      return this.ablity;
    }
    public int getAttack(){
       return this.atk;
@@ -40,7 +40,8 @@ public class Zombie{
           this.def = s.nextInt();
           this.hp = s.nextInt();
           this.dmg = s.nextInt();
-          this.name = "Zombie";
+          this.name = s.next();
+          this.ablity = s.nextInt();
           s.close();
       }catch(Exception e){
 
