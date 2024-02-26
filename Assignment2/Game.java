@@ -7,45 +7,15 @@
 import java.util.Scanner;
 import java.util.Random;
 public class Game {
-   private int pAtk;
-   private int pDef;
-   private int pHp;
-   private int pDmg;
-   private boolean pUsedDef;
-   private String pName;
-   
-   private Zombie z;
-   private Goblin g;
-   
-   private int mAtk;
-   private int mDef;
-   private int mHp;
-   private int mDmg;
-   private int ablity;
-   private String mName;
-   private boolean mUsedDef;
+   private Monster m;
+   private Monster p;
    
    private Scanner s;
    private static Random r;
    
    public Game(){
-      pAtk = 6;
-      pDef = 16;
-      pHp = 15;
-      pDmg = 5;
-      pUsedDef = false;
-      pName = "Player";
-   
-      z = new Zombie();
-      g = new Goblin();
-      
-      mAtk = z.getAttack();
-      mDef = z.getDefence();
-      mHp = z.getHp();
-      mDmg = z.getDamage();
-      mUsedDef = false;
-      mName = z.getName();
-      ablity = z.getAblity();
+      p = new Player();
+      m = new Zombie();
       
       s = new Scanner(System.in);
       r = new Random();
@@ -55,15 +25,15 @@ public class Game {
       int[] order = {2,4,3,4,2,1,2,4};
       int turn = 1; //odd for player even for monster
       int curMon = 0;
-      while(pHp > 0 && mHp > 0){
-         System.out.printf("TURN %d: %s is at %d health and %s is at %d health\n", turn, pName, pHp, mName, mHp);
+      while(p.getHp() > 0 && m.getHp() > 0){
+         System.out.printf("TURN %d: %s is at %d health and %s is at %d health\n", turn, p.getName(), p.getHp(), m.getName(), m.getHp());
          if(turn % 2 == 0) {
-            mTurn(Game.chooseAttack());
-            if(ablity == 2 && r.nextInt(4) == 3){
-               System.out.printf("%s uses [Speedy] ablity! Preforms an attack after first action.\n", mName);
-               if(mDef < Game.makeAttack(mAtk)){
-                  pHp -= mDmg;
-                  System.out.printf("The attack suceeded! %s takes %d damage.\n",pName, mDmg);
+            turn(Game.chooseAttack(),m,p);
+            if(m.getAblity() == 2 && r.nextInt(4) == 3){
+               System.out.printf("%s uses [Speedy] ablity! Preforms an attack after first action.\n", m.getName());
+               if(p.getDefence() < Game.makeAttack(m.getAttack())){
+                  p.setHp(p.getHp() - m.getDamage());
+                  System.out.printf("The attack suceeded! %s takes %d damage.\n",p.getName(), m.getDamage());
                }else{
                   System.out.println("The attack failed!");
                }
@@ -72,16 +42,16 @@ public class Game {
          }
          else {
             System.out.println("Enter 1 to attack and 2 to defend!");
-            pTurn(input());
+            turn(input(),p,m);
          }
          turn++;
-         if(mHp <= 0){
-            System.out.printf("%s has been slain\n", mName);
-            if(ablity == 1){
-               System.out.printf("%s uses [Undead] ablity! Preforms an attack after defeated.\n", mName);
-               if(mDef < Game.makeAttack(mAtk)){
-                  pHp -= mDmg;
-                  System.out.printf("The attack suceeded! %s takes %d damage.\n",pName, mDmg);
+         if(m.getHp() <= 0){
+            System.out.printf("%s has been slain\n", m.getName());
+            if(m.getAblity() == 1){
+               System.out.printf("%s uses [Undead] ablity! Preforms an attack after defeated.\n", m.getName());
+               if(m.getDefence() < Game.makeAttack(m.getAttack())){
+                  p.setHp(p.getHp()-m.getDamage());
+                  System.out.printf("The attack suceeded! %s takes %d damage.\n",p.getName(), m.getDamage());
                }else{
                   System.out.println("The attack failed!");
                }
@@ -90,71 +60,40 @@ public class Game {
             if(curMon<9){
                switch(order[curMon]){
                   case 1:
-                     mAtk = z.getAttack();
-                     mDef = z.getDefence();
-                     mHp = z.getHp();
-                     mDmg = z.getDamage();
-                     mName = z.getName();
-                     ablity = z.getAblity();
+                     m = new Zombie();
                      break;
                   case 2:
-                     mAtk = g.getAttack();
-                     mDef = g.getDefence();
-                     mHp = g.getHp();
-                     mDmg = g.getDamage();
-                     mName = g.getName();
-                     ablity = g.getAblity();
+                     m = new Goblin();
                   case 3:
                      
                   case 4:
                }
-               mUsedDef = false;
             }
          }
       }
-      if(pHp > 0)
+      if(p.getHp() > 0)
          System.out.println("Player Wins");
       else 
          System.out.println("Player Loses");
    }
    
-   private void pTurn(int attack){
-      if(pUsedDef){
-         pDef -= 2;
-         pUsedDef = false;
+   private void turn(int attack, Monster a, Monster b){
+      if(a.usedDef()){
+         a.defend(1);
+         a.flipDef();
       }
       if(attack == 1){
-         System.out.printf("%s Attacks!\n", pName);
-         if(mDef < Game.makeAttack(pAtk)){
-            mHp -= pDmg;
-            System.out.printf("The attack suceeded! %s takes %d damage.\n",mName, pDmg);
+         System.out.printf("%s Attacks!\n", a.getName());
+         if(b.getDefence() < Game.makeAttack(a.getAttack())){
+            b.setHp(b.getHp() - a.getDamage());
+            System.out.printf("The attack suceeded! %s takes %d damage.\n",b.getName(), a.getDamage());
          }else{
             System.out.println("The attack failed!");
          }
       } else {
-         System.out.printf("%s Defends!\n", pName);
-         pDef += 2;
-         pUsedDef = true;
-      }
-   }
-   
-   private void mTurn(int attack){
-      if(mUsedDef){
-         mDef -= 2;
-         mUsedDef = false;
-      }
-      if(attack == 1){
-         System.out.printf("%s Attacks!\n", mName);
-         if(mDef < Game.makeAttack(mAtk)){
-            pHp -= mDmg;
-            System.out.printf("The attack suceeded! %s takes %d damage.\n",pName, mDmg);
-         }else{
-            System.out.println("The attack failed!");
-         }
-      } else {
-         System.out.printf("%s Defends!\n", pName);
-         mDef += 2;
-         mUsedDef = false;
+         System.out.printf("%s Defends!\n", a.getName());
+         a.defend(0);
+         a.flipDef();
       }
    }
    

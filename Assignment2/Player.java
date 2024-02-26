@@ -7,8 +7,8 @@
 import java.util.Scanner;
 import java.io.File;
 import java.util.Random;
-public class Goblin extends Monster{
-   public Goblin(){
-      super("Goblin");
+public class Player extends Monster{
+   public Player(){
+      super("Player");
    }
 }

@@ -7,44 +7,8 @@
 import java.util.Scanner;
 import java.io.File;
 import java.util.Random;
-public class Zombie{
-   private int atk;
-   private int def;
-   private int hp;
-   private int dmg;
-   private int ablity;
-   private String name;
-   public int getAblity(){
-      return this.ablity;
-   }
-   public int getAttack(){
-      return this.atk;
-   }
-   public int getDefence(){
-      return this.def;
-   }
-   public int getHp(){
-      return this.hp;
-   }
-   public int getDamage(){
-      return this.dmg;
-   }
-   public String getName(){
-      return this.name;
-   }
-
+public class Zombie extends Monster{
    public Zombie(){
-      try{
-          Scanner s = new Scanner(new File("Zombie.txt"));
-          this.atk = s.nextInt();
-          this.def = s.nextInt();
-          this.hp = s.nextInt();
-          this.dmg = s.nextInt();
-          this.name = s.next();
-          this.ablity = s.nextInt();
-          s.close();
-      }catch(Exception e){
-
-      }
+      super("Zombie");
    }
 }
