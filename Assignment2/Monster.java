@@ -12,9 +12,11 @@ public class Monster{
    private int def;
    private int hp;
    private int dmg;
-   private int ablity;
-   protected String name;
+   
+   
+   private String name;
    private boolean usedDef;
+   
    public boolean usedDef(){
       return this.usedDef;
    }
@@ -29,9 +31,6 @@ public class Monster{
    }
    public void setHp(int hp){
       this.hp = hp;
-   }
-   public int getAblity(){
-      return this.ablity;
    }
    public int getAttack(){
       return this.atk;
@@ -48,7 +47,25 @@ public class Monster{
    public String getName(){
       return this.name;
    }
-
+   public void turn(int attack, Monster b){
+      if(this.usedDef()){
+         this.defend(1);
+         this.flipDef();
+      }
+      if(attack == 1){
+         System.out.printf("%s Attacks!\n", this.getName());
+         if(b.getDefence() < Game.makeAttack(this.getAttack())){
+            b.setHp(b.getHp() - this.getDamage());
+            System.out.printf("The attack suceeded! %s takes %d damage.\n",b.getName(), this.getDamage());
+         }else{
+            System.out.println("The attack failed!");
+         }
+      } else {
+         System.out.printf("%s Defends!\n", this.getName());
+         this.defend(0);
+         this.flipDef();
+      }
+   }
    public Monster(String name){
       try{
          Scanner s = new Scanner(new File(name+".txt"));
@@ -56,7 +73,6 @@ public class Monster{
          this.def = s.nextInt();       
          this.hp = s.nextInt();
          this.dmg = s.nextInt();
-         this.ablity = s.nextInt();
          this.name = name;
          s.close();
       }catch(Exception e){
