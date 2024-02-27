@@ -24,10 +24,7 @@ public class Monster{
       this.usedDef = !this.usedDef;
    }
    public void defend(int x){
-      if(x == 0)
-         this.def += 2;
-      else
-         this.def -= 2;
+      this.def += x;
    }
    public void setHp(int hp){
       this.hp = hp;
@@ -48,21 +45,21 @@ public class Monster{
       return this.name;
    }
    public void turn(int attack, Monster b){
-      if(this.usedDef()){
-         this.defend(1);
+      if(this.usedDef){
+         this.defend(-2);
          this.flipDef();
       }
       if(attack == 1){
-         System.out.printf("%s Attacks!\n", this.getName());
-         if(b.getDefence() < Game.makeAttack(this.getAttack())){
-            b.setHp(b.getHp() - this.getDamage());
-            System.out.printf("The attack suceeded! %s takes %d damage.\n",b.getName(), this.getDamage());
+         System.out.printf("%s Attacks!\n", this.name);
+         if(b.getDefence() < Game.makeAttack(this.atk)){
+            b.setHp(b.getHp() - this.dmg);
+            System.out.printf("The attack suceeded! %s takes %d damage.\n",b.getName(), this.dmg);
          }else{
             System.out.println("The attack failed!");
          }
       } else {
-         System.out.printf("%s Defends!\n", this.getName());
-         this.defend(0);
+         System.out.printf("%s Defends!\n", this.name);
+         this.defend(2);
          this.flipDef();
       }
    }
