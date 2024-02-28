@@ -40,6 +40,7 @@ public class Monster{
    public int getDamage(){
       return this.dmg;
    }
+   
    public String getName(){
       return this.name;
    }
