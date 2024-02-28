@@ -6,7 +6,6 @@
 */
 import java.util.Scanner;
 import java.io.File;
-import java.util.Random;
 public class Monster{
    private int atk;
    private int def;

@@ -4,9 +4,6 @@
  *Teacher: Mr. Guglielmi
  *Description: 
 */
-import java.util.Scanner;
-import java.io.File;
-import java.util.Random;
 public class Goblin extends Monster{
    public Goblin(){
       super("Goblin");
@@ -15,10 +12,10 @@ public class Goblin extends Monster{
    public void turn(int attack, Monster b){
       super.turn(attack,b);
       if(Game.getRandom().nextInt(4) == 3){
-         System.out.printf("%s uses [Speedy] ablity! Preforms an attack after first action.\n", super.getName());
+         System.out.printf("%s uses [Speedy] ability! Preforms an attack after first action.\n", super.getName());
          if(b.getDefence() < Game.makeAttack(super.getAttack())){
             b.setHp(b.getHp() - super.getDamage());
-            System.out.printf("The attack suceeded! %s takes %d damage.\n",b.getName(), super.getDamage());
+            System.out.printf("The attack succeeded! %s takes %d damage.\n",b.getName(), super.getDamage());
          }else{
             System.out.println("The attack failed!");
          }

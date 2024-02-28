@@ -14,7 +14,7 @@ public class Game {
    private static Random r;
    
    public Game(){
-      p = new Player();
+      p = new Monster("Player");
       m = new Zombie();
       
       s = new Scanner(System.in);
@@ -22,17 +22,17 @@ public class Game {
    }
    
    public void beginGame(){
-      int[] order = {2,4,3,4,2,1,2,4};
+      int[] order = {2,4,3,4,2,1,2,4,3};
       int turn = 1; //odd for player even for monster
       int curMon = 0;
       while(p.getHp() > 0 && m.getHp() > 0){
-         System.out.printf("TURN %d: %s is at %d health and %s is at %d health\n", turn, p.getName(), p.getHp(), m.getName(), m.getHp());
+         System.out.printf("\nTURN %d: %s is at %d health and %s is at %d health\n", turn, p.getName(), p.getHp(), m.getName(), m.getHp());
          if(turn % 2 == 0) {
             m.turn(Game.chooseAttack(),p);
             
          }
          else {
-            System.out.println("Enter 1 to attack and 2 to defend!");
+            System.out.print("Enter 1 to attack and 2 to defend: ");
             p.turn(input(),m);
          }
          turn++;
@@ -46,9 +46,13 @@ public class Game {
                      break;
                   case 2:
                      m = new Goblin();
+                     break;
                   case 3:
-                     
+                     m = new Wizard();
+                     break;
                   case 4:
+                     m = new Golem();
+                     break;
                }
             }
          }
@@ -74,10 +78,10 @@ public class Game {
    private static int chooseAttack(){
       return r.nextInt(2)+1;
    }
-   protected static int makeAttack(int atk){
+   public static int makeAttack(int atk){
       return atk + r.nextInt(20)+1;
    }
-   protected static Random getRandom(){
+   public static Random getRandom(){
       return r;
    }
 }

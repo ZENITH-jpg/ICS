@@ -4,9 +4,6 @@
  *Teacher: Mr. Guglielmi
  *Description: 
 */
-import java.util.Scanner;
-import java.io.File;
-import java.util.Random;
 public class Zombie extends Monster{
    public Zombie(){
       super("Zombie");
@@ -15,7 +12,7 @@ public class Zombie extends Monster{
    public void turn(int attack, Monster b){
       super.turn(attack,b);
       if(super.getHp()<5 && Game.getRandom().nextInt(5) == 4){
-         System.out.printf("%s uses [Undead] ablity! 1/4 chance to heal health to 6 if it is under 5.\n", super.getName());
+         System.out.printf("%s uses [Undead] ability! 1/4 chance to heal health to 6 if it is under 5.\n", super.getName());
          super.setHp(6);
       }
    }
