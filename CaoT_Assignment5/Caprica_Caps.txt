@@ -1,0 +1,18 @@
+Bill Adama,7,18
+Lee Adama,12,25
+Kara Thrace,40,2
+David Byrne,16,16
+Paul Atreides,22,16
+Shed Garvey,17,8
+Ray Chapman,2,0
+RJ MacReady,35,14
+Ashley Williams,30,30
+Lazlo,7,24
+Fox Mulder,33,12
+Helman Mann,17,4
+Arsene Lupin,6,30
+Henry Case,6,4
+Jack Aubrey,45,36
+Gordon Freeman,12,24
+Alex Benedict,20,15
+Robin Swift,26,18
