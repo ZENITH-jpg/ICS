@@ -1,0 +1,10 @@
+Where: Term.isGreater(Term t)
+What: Compares coefficients before exponents, causes for 2x to be greater than x^2 
+Fix: Make it so we compare exponents first, the compare coefficients
+Test: Assert x^2 > 2x passes
+
+Where: Term.isGreater(Term t)
+What: If polynomials have even exponents, if this has a higher coefficient than t, this.isGreater(t) returns false. Failed case x^2 > -4x^2
+Fix: Case for when this.exp == t.getExp() wasn't checked. Second if in Term.isGreater was redundant as this.exp > t.getExp() was checked twice. Replace the check with an equals check instead
+Test: Assert x^2 > -4x^2 passes
+
