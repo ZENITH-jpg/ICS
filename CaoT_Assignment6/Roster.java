@@ -99,31 +99,31 @@ public class Roster{
 	
 	}
    //searching methods for finding players in roster
-   public int getPlayer(String s){
-      for(int i = 0; i < players.length; i++){
+   public int getPlayer(String s){ // get player by name
+      for(int i = 0; i < players.length; i++){ // linear search for index with same name
          if(players[i].getName().equals(s)){
             return i;
          }
       }
-      return -1;
+      return -1; // player does not exist
    }
-   public int getPlayerByGoals(int x){
-      sort(1);
+   public int getPlayerByGoals(int x){ // get player by goals
+      sort(1); // sort array by goals
       int l = 0;
       int h = players.length-1;
-      while(l<=h){
-         int mid = (l+h)/2;
-         if(players[mid].getGoals() == x){
+      while(l<=h){ // binary search for player
+         int mid = (l+h)/2; // get middle index
+         if(players[mid].getGoals() == x){ // if middle is the player, then return index
             return mid;
-         }else if(players[mid].getGoals() > x){
+         }else if(players[mid].getGoals() > x){ // if middle index has more goals, push down upper bound to middle
             h = mid-1;
          }else{
-            l = mid+1;
+            l = mid+1; // else push up lower bound
          }
       }
-      return -1;
+      return -1; // player doesn't exist
    }
-   public int getPlayerByAssists(int x){
+   public int getPlayerByAssists(int x){ // same binary search as goals but with points instead
       sort(3);
       int l = 0;
       int h = players.length-1;

@@ -1,6 +1,6 @@
 /* Author: Tristan Cao
-Date: 30/03/2024
-Description: Main class to test code and sorting algorithms
+Date: 05/04/2024
+Description: Main class to test code and sorting algorithms, and search algorithms
 */
 import java.util.Scanner;
 public class Main{
@@ -18,26 +18,26 @@ public class Main{
       System.out.println("Roster after changes: ");
       r.display(); // display sorted roster
       boolean b = true;
-      while(b){
+      while(b){ // let user search for players until stopped
          System.out.println("Type 1 to search for a player by name, 2 to search for a player by goals, and any other key to search by assists");
-         String a = s.nextLine();
+         String a = s.nextLine(); // get choice
          int i = -1;
          if(a.equals("1")){
-            System.out.println("Input player name");
+            System.out.println("Input player name"); // get by name
             i = r.getPlayer(s.nextLine());
          }else if(a.equals("2")){
-            System.out.println("Input player goals");
+            System.out.println("Input player goals"); // get by goals
             i = r.getPlayerByGoals(Integer.parseInt(s.nextLine()));
          }else{
-            System.out.println("Input player assists");
+            System.out.println("Input player assists"); // get by assists
             i = r.getPlayerByAssists(Integer.parseInt(s.nextLine()));
          }
-         if(i != -1){
+         if(i != -1){ // if player is found, print out player
             System.out.println(r.players[i].toString());
          }else{
-            System.out.println("Player not found!");
+            System.out.println("Player not found!"); // inform user that player with criteria does not exist
          }
-         System.out.println("Type 1 to break out the program, any other key to continue");
+         System.out.println("Type 1 to break out the program, any other key to continue"); // let user break
          if(s.nextLine().equals("1")) b = false;
       }
    }
