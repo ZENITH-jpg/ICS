@@ -50,7 +50,7 @@ public class Polynomial{
 			s += terms.get(i).toString() + " + ";
 		}
 		
-		return s.substring(0, s.length()-2);
+		return s.substring(0, s.length()-3);
 	}
 	
 	public int getOrder(){

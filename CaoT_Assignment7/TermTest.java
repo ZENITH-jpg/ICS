@@ -28,6 +28,8 @@ public class TermTest {
    }
    @Test public void evaluateTest(){
       Assert.assertEquals(160,d.evaluate(2));
-      Assert.assertEquals(-4,d.evaluate(1));
+      Assert.assertEquals(-4,e.evaluate(1));
+      Assert.assertEquals(81,a.evaluate(9));
+
    }
 }

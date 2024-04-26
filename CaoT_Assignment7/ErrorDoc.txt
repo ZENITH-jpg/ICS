@@ -5,6 +5,15 @@ Test: Assert x^2 > 2x passes
 
 Where: Term.isGreater(Term t)
 What: If polynomials have even exponents, if this has a higher coefficient than t, this.isGreater(t) returns false. Failed case x^2 > -4x^2
-Fix: Case for when this.exp == t.getExp() wasn't checked. Second if in Term.isGreater was redundant as this.exp > t.getExp() was checked twice. Replace the check with an equals check instead
+Fix: Case for when this.exp == t.getExp() wasn't checked. Second if in Term.isGreater was redundant as this.exp > t.getExp() was checked twice. Replace the greater than check with an equals check instead
 Test: Assert x^2 > -4x^2 passes
 
+Where: Term.evaluate(int x)
+What: Evaluate seems to multiply the coeffcient first before computing the exponent. This makes the answer wrong as only the variable should be affected by the exponent. 5*2^5 should give 160 got 100000 instead
+Fix: multiply the variables by the coefficient after the exponent has been calculated (x*Math.pow ( this.coeff, this.exp))
+Test: Assert 5*2^5 = 160 passes
+
+Where: Polynomial.toString()
+What: Returned value has a extra space at the end of the string ("5x^5 + 1x^3 + 1x^2 + -4x^2 + 2x^1 ")
+Fix: make it so we return s.substring(s.length() - 3) instead of -2
+Test: Assert p.toString().equals("5x^5 + 1x^3 + 1x^2 + -4x^2 + 2x^1") passes

@@ -22,7 +22,7 @@ public class Term{
 	}
 	
 	public int evaluate (int x){
-	    return (int) ( Math.pow (x * this.coeff, this.exp));
+	    return (int) ( this.coeff*Math.pow (x , this.exp));
 	}
 	
 	public String toString(){
