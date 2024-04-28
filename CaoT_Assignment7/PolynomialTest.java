@@ -24,13 +24,15 @@ public class PolynomialTest {
 
    @Test public void evaluateTest() {
       Assert.assertEquals(5, p.evaluate(1)); // check if the polynomial evaluates correctly
-      Assert.assertEquals(160, p.evaluate(2));
-      Assert.assertEquals(-11, p.evaluate(-1));
+      Assert.assertEquals(160, p.evaluate(2)); // test with a number > 1
+      Assert.assertEquals(-11, p.evaluate(-1)); // test with a negative
    }
-
+   @Test public void toStringTest(){
+      Assert.assertTrue("Expected 1x^2 + 2x^1 + 1x^3 + 5x^5 + -4x^2, got "+ p,p.toString().equals("1x^2 + 2x^1 + 1x^3 + 5x^5 + -4x^2")); // test toString
+   }
    @Test public void sortTest(){
       p.sortPoly(); // sort the polynomial
-      Assert.assertTrue("Expected 5x^5 + 1x^3 + 1x^2 + -4x^2 + 2x^1, got "+ p,p.toString().equals("5x^5 + 1x^3 + 1x^2 + -4x^2 + 2x^1")); //doubles as a toString test
+      Assert.assertTrue("Expected 5x^5 + 1x^3 + 1x^2 + -4x^2 + 2x^1, got "+ p,p.toString().equals("5x^5 + 1x^3 + 1x^2 + -4x^2 + 2x^1")); //test if it sorted in right order
    }
 
    @Test public void testAdd(){

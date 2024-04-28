@@ -1,3 +1,7 @@
+/* Author: Tristan Cao
+Date: 28/04/2024
+Description: Main class that runs the program. Things must be fixed so this works
+*/
 public class Main{
    public static void main (String[] args){
    	Term t[] = {new Term (3, 2), new Term (2, 1), new Term (3, 3), new Term (4, 2)};
