@@ -1,3 +1,7 @@
+/* Author: Tristan Cao
+Date: 28/04/2024
+Description: Term class to be used in polynomial class
+*/
 public class Term{
 	
 	protected int coeff;
@@ -22,7 +26,7 @@ public class Term{
 	}
 	
 	public int evaluate (int x){
-	    return (int) ( this.coeff*Math.pow (x , this.exp));
+	    return (int) ( this.coeff*Math.pow (x , this.exp)); // moved this.coeff outside of the power
 	}
 	
 	public String toString(){

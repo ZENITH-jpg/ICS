@@ -1,3 +1,7 @@
+/* Author: Tristan Cao
+Date: 28/04/2024
+Description: Polynomial class that lets you make a polynomial and has methods relating to polynomials
+*/
 import java.util.ArrayList;
 
 public class Polynomial{
@@ -50,7 +54,7 @@ public class Polynomial{
 			s += terms.get(i).toString() + " + ";
 		}
 		
-		return s.substring(0, s.length()-3);
+		return s.substring(0, s.length()-3); // remove the extra space at the end of the string
 	}
 	
 	public int getOrder(){
